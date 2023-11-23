@@ -20,13 +20,13 @@ player_image = pygame.image.load(
     "assets/images/characters/elf/idle/0.png"
 ).convert_alpha()
 
-player_image = pygame.transform.scale(
-    player_image,
-    (
-        player_image.get_width() * constants.SCALE,
-        player_image.get_height() * constants.SCALE,
-    ),
-)
+# helped function to scale image
+def scale_img(image, scale):
+    w = player_image.get_width()
+    h = player_image.get_height()
+    return pygame.transform.scale(image, (w * constants.SCALE, h * constants.SCALE))
+
+player_image = scale_img(player_image, constants.SCALE)
 
 
 # create player
