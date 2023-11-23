@@ -16,7 +16,18 @@ moving_right = False
 moving_up = False
 moving_down = False
 
-player_image = pygame.image.load("assets/images/characters/elf/idle/0.png").convert_alpha()
+player_image = pygame.image.load(
+    "assets/images/characters/elf/idle/0.png"
+).convert_alpha()
+
+player_image = pygame.transform.scale(
+    player_image,
+    (
+        player_image.get_width() * constants.SCALE,
+        player_image.get_height() * constants.SCALE,
+    ),
+)
+
 
 # create player
 player = Character(100, 100, player_image)
@@ -61,8 +72,8 @@ while run:
                 moving_up = True
             if event.key is pygame.K_x:
                 moving_down = True
-        
-        # keyboard button release   
+
+        # keyboard button release
         if event.type == pygame.KEYUP:
             if event.key is pygame.K_a:
                 moving_left = False

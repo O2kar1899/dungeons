@@ -1,11 +1,13 @@
-FPS = 60 # frames per second
+FPS = 60  # frames per second
 SCREEN_WIDHT = 800
 SCREEN_HEIGHT = 600
 
+# images
+SCALE = 3
 
-#Colors
-RED = (255,0,0)
-BG = (0,0,0) # Background
+# Colors
+RED = (255, 0, 0)
+BG = (0, 0, 0)  # Background
 
 # Move
 SPEED = 5
