@@ -4,14 +4,16 @@ import constants
 
 
 class Character:
-    def __init__(self, x, y, animation_list):
+    def __init__(self, x, y, mob_animations, char_type):
+        self.char_type = char_type
+        self.mob_animations = mob_animations
         self.flip = False
-        self.animation_list = animation_list
+        self.animation_list = mob_animations[char_type]
         self.frame_index = 0
         self.action = 0  # 0:idle, 1:run
         self.running = False
         self.update_time = pygame.time.get_ticks()
-        self.image = animation_list[self.action][self.frame_index]
+        self.image = self.animation_list[self.action][self.frame_index]
         self.rect = pygame.Rect(0, 0, 40, 40)
         self.rect.center = (x, y)
 
