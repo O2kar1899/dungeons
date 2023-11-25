@@ -1,6 +1,7 @@
 import pygame
 import constants
 from character import Character
+from weapon import Weapon
 
 pygame.init()
 
@@ -9,6 +10,7 @@ pygame.display.set_caption("Dungeons Crawler")
 
 # create clock for maintaining frame rate
 clock = pygame.time.Clock()
+
 
 # define player movement variables
 moving_left = False
@@ -28,11 +30,18 @@ def scale_img(image, scale):
     return pygame.transform.scale(image, (w * constants.SCALE, h * constants.SCALE))
 
 
+# load weapon images
+bow_image = pygame.image.load("assets/images/weapons/bow.png")
+arrow_image = pygame.image.load("assets/images/weapons/arrow.png")
+fireball_image = pygame.image.load("assets/images/weapons/fireball.png")
+
+
 # load character images
-mob_animations:list=[]
+mob_animations: list = []
 mob_types = ["elf", "imp", "skeleton", "goblin", "muddy", "tiny_zombie", "big_demon"]
 
 animations_types = ["idle", "run"]
+
 
 # load images
 for mob in mob_types:
@@ -47,19 +56,23 @@ for mob in mob_types:
             tempp_list.append(img)
         animation_list.append(tempp_list)
     mob_animations.append(animation_list)
-    
+
 
 player_image = scale_img(player_image, constants.SCALE)
 
 
 # create player
-player = Character(100, 100, mob_animations, 2 )
+player = Character(100, 100, mob_animations, 0)
+
+
+# create player's weapon
+bow = Weapon(bow_image)
+
 
 # game loop
 run = True
 while run:
     # create frame rate
-
     clock.tick(constants.FPS)
     screen.fill(constants.BG)
 
@@ -80,9 +93,11 @@ while run:
 
     # update player
     player.update()
+    bow.update(player)
 
     # draw player
     player.draw(screen)
+    bow.draw(screen)
 
     # event handler
     for event in pygame.event.get():

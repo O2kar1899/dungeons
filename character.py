@@ -67,5 +67,7 @@ class Character:
         flipped_image = pygame.transform.flip(
             self.image, flip_x=self.flip, flip_y=False
         )
+        if self.char_type == 0:
+            pass
         surface.blit(flipped_image, self.rect)
         pygame.draw.rect(surface, (constants.RED), self.rect, 1)
