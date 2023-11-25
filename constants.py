@@ -4,10 +4,11 @@ SCREEN_HEIGHT = 600
 
 # images
 SCALE = 3
+ANIMATION_COOLDOWN = 70
 
 # Colors
 RED = (255, 0, 0)
-BG = (0, 0, 0)  # Background
+BG = (20, 20, 20)  # Background
 
 # Move
 SPEED = 5
