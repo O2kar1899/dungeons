@@ -4,11 +4,11 @@ import constants
 
 
 class Character:
-    def __init__(self, x, y, mob_animations, char_type): # char_type character-Type
+    def __init__(self, x, y, mob_animations, char_type):  # char_type character-Type
         self.char_type = char_type
         self.mob_animations = mob_animations
         self.flip = False
-        self.animation_list = mob_animations[char_type] 
+        self.animation_list = mob_animations[char_type]
         self.frame_index = 0
         self.action = 0  # 0:idle, 1:run
         self.running = False
@@ -40,7 +40,6 @@ class Character:
         else:
             self.update_action(0)
 
-
         animation_cooldown = constants.ANIMATION_COOLDOWN
         # handle animtion
         # update image
@@ -57,7 +56,7 @@ class Character:
         # check th new action is different to the previous one
         if new_action != self.action:
             self.action = new_action
-            
+
             # update the animations settings
             self.frame_index = 0
             self.update_time = pygame.time.get_ticks()

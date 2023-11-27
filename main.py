@@ -18,19 +18,17 @@ moving_right = False
 moving_up = False
 moving_down = False
 
-player_image = pygame.image.load(
-    "assets/images/characters/elf/idle/0.png"
-).convert_alpha()
+player_image = pygame.image.load("assets/images/characters/elf/idle/0.png").convert_alpha()
 
 
-
-#helper function to scale image
+# helper function to scale image
 def scale_img(image, scale):
-  w = image.get_width()
-  h = image.get_height()
-  return pygame.transform.scale(image, (w * scale, h * scale))
+    w = image.get_width()
+    h = image.get_height()
+    return pygame.transform.scale(image, (w * scale, h * scale))
 
-#load weapon images
+
+# load weapon images
 bow_image = scale_img(pygame.image.load("assets/images/weapons/bow.png").convert_alpha(), constants.WEAPON_SCALE)
 
 
@@ -47,9 +45,7 @@ for mob in mob_types:
     for animation in animations_types:
         tempp_list = []
         for i in range(4):
-            img = pygame.image.load(
-                f"assets/images/characters/{mob}/{animation}/{i}.png"
-            ).convert_alpha()
+            img = pygame.image.load(f"assets/images/characters/{mob}/{animation}/{i}.png").convert_alpha()
             img = scale_img(img, constants.SCALE)
             tempp_list.append(img)
         animation_list.append(tempp_list)
