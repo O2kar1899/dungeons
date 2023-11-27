@@ -4,11 +4,11 @@ import constants
 
 
 class Character:
-    def __init__(self, x, y, mob_animations, char_type):
+    def __init__(self, x, y, mob_animations, char_type): # char_type character-Type
         self.char_type = char_type
         self.mob_animations = mob_animations
         self.flip = False
-        self.animation_list = mob_animations[char_type]
+        self.animation_list = mob_animations[char_type] 
         self.frame_index = 0
         self.action = 0  # 0:idle, 1:run
         self.running = False
@@ -21,7 +21,6 @@ class Character:
         self.running = False
         if dx != 0 or dy != 0:
             self.running = True
-
         if dx < 0:
             self.flip = True
         if dx > 0:
@@ -35,7 +34,6 @@ class Character:
         self.rect.y += dy
 
     def update(self):
-
         # check what action the player is performing
         if self.running is True:
             self.update_action(1)
@@ -59,15 +57,15 @@ class Character:
         # check th new action is different to the previous one
         if new_action != self.action:
             self.action = new_action
+            
             # update the animations settings
             self.frame_index = 0
             self.update_time = pygame.time.get_ticks()
 
     def draw(self, surface):
-        flipped_image = pygame.transform.flip(
-            self.image, flip_x=self.flip, flip_y=False
-        )
+        flipped_image = pygame.transform.flip(self.image, flip_x=self.flip, flip_y=False)
         if self.char_type == 0:
-            pass
-        surface.blit(flipped_image, self.rect)
+            surface.blit(flipped_image, (self.rect.x, self.rect.y - constants.SCALE * constants.OFFSET))
+        else:
+            surface.blit(flipped_image, self.rect)
         pygame.draw.rect(surface, (constants.RED), self.rect, 1)

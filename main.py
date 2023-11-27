@@ -23,17 +23,15 @@ player_image = pygame.image.load(
 ).convert_alpha()
 
 
-# helped function to scale image
+
+#helper function to scale image
 def scale_img(image, scale):
-    w = player_image.get_width()
-    h = player_image.get_height()
-    return pygame.transform.scale(image, (w * constants.SCALE, h * constants.SCALE))
+  w = image.get_width()
+  h = image.get_height()
+  return pygame.transform.scale(image, (w * scale, h * scale))
 
-
-# load weapon images
-bow_image = pygame.image.load("assets/images/weapons/bow.png")
-arrow_image = pygame.image.load("assets/images/weapons/arrow.png")
-fireball_image = pygame.image.load("assets/images/weapons/fireball.png")
+#load weapon images
+bow_image = scale_img(pygame.image.load("assets/images/weapons/bow.png").convert_alpha(), constants.WEAPON_SCALE)
 
 
 # load character images
