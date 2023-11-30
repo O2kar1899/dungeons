@@ -1,3 +1,4 @@
+# Surface
 FPS = 60  # frames per second
 SCREEN_WIDHT = 800
 SCREEN_HEIGHT = 600
@@ -12,5 +13,9 @@ OFFSET = 12  # to bring player and rectangle together
 RED = (255, 0, 0)
 BG = (20, 20, 20)  # Background
 
-# Move
+# Player
 SPEED = 5
+
+#  Arrow
+SHOT_COOLDOWN = 300
+ARROW_SPEED = 10
