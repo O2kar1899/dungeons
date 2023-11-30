@@ -58,9 +58,8 @@ class Arrow(pygame.sprite.Sprite):
     def __init__(self, image, x, y, angle):
         pygame.sprite.Sprite.__init__(self)
         self.original_image = image
-        self.x = x
         self.angle = angle
-        self.image = self.image = pygame.transform.rotate(self.original_image, self.angle)
+        self.image = self.image = pygame.transform.rotate(self.original_image, self.angle - 90)
         self.rect = self.image.get_rect()
         self.rect.center = (x, y)
         #  calculate the horizental and vertical speeds based on the angel
@@ -70,8 +69,6 @@ class Arrow(pygame.sprite.Sprite):
     def update(self):
         self.rect.x += self.dx
         self.rect.y += self.dy
-
-
 
     def draw(self, surface):
         surface.blit(
