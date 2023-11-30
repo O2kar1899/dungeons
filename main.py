@@ -96,6 +96,7 @@ while run:
         arrow_group.add(arrow)
     for arrow in arrow_group:
         arrow.update()
+    print(arrow_group)
 
     # draw player on screens
     player.draw(screen)

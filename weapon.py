@@ -70,6 +70,15 @@ class Arrow(pygame.sprite.Sprite):
         self.rect.x += self.dx
         self.rect.y += self.dy
 
+        #  check if arrow is gone off screen
+        if (
+            self.rect.right < 0
+            or self.rect.left > constants.SCREEN_WIDHT
+            or self.rect.bottom < 0
+            or self.rect.top > constants.SCREEN_HEIGHT
+        ):
+            self.kill()
+
     def draw(self, surface):
         surface.blit(
             self.image,
