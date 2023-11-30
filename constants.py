@@ -10,7 +10,7 @@ OFFSET = 12  # to bring player and rectangle together
 
 # Colors
 RED = (255, 0, 0)
-BG = (50, 30, 0)  # Background
+BG = (20, 20, 20)  # Background
 
 # Move
 SPEED = 5
