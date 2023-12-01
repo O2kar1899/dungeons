@@ -4,7 +4,7 @@ import constants
 
 
 class Character:
-    def __init__(self, x, y, mob_animations, char_type):  # char_type character-Type
+    def __init__(self, x, y, health, mob_animations, char_type):  # char_type character-Type
         self.char_type = char_type
         self.mob_animations = mob_animations
         self.flip = False
@@ -12,6 +12,7 @@ class Character:
         self.frame_index = 0
         self.action = 0  # 0:idle, 1:run
         self.running = False
+        self.health = health
         self.update_time = pygame.time.get_ticks()
         self.image = self.animation_list[self.action][self.frame_index]
         self.rect = pygame.Rect(0, 0, 40, 40)

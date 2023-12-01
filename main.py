@@ -57,11 +57,17 @@ player_image = scale_img(player_image, constants.SCALE)
 
 
 # create player
-player = Character(100, 100, mob_animations, 0)
+player = Character(x=100, y=100, health=100, mob_animations=mob_animations, char_type=0)
 
+#  create enemy
+enemy = Character(200, 300, 100, mob_animations, 1)
 
 # create player's weapon
 bow = Weapon(bow_image, arrow_image)
+
+# create empty enemy list
+enemy_list = []
+enemy_list.append(enemy)
 
 # create sprite groups
 arrow_group = pygame.sprite.Group()
@@ -90,19 +96,23 @@ while run:
     player.move(dx, dy)
 
     # update player
+    for enemy in enemy_list:
+        enemy.update()
     player.update()
     arrow = bow.update(player)
     if arrow:
         arrow_group.add(arrow)
     for arrow in arrow_group:
-        arrow.update()
-    print(arrow_group)
+        arrow.update(enemy_list)
 
     # draw player on screens
+    for enemy in enemy_list:
+        enemy.draw(screen)
     player.draw(screen)
     bow.draw(screen)
     for arrow in arrow_group:
         arrow.draw(screen)
+    print(f"enemy.health: {enemy.health}")
 
     # event handler
     for event in pygame.event.get():
