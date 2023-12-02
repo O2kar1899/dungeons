@@ -11,14 +11,14 @@ pygame.display.set_caption("Dungeons Crawler")
 # create clock for maintaining frame rate
 clock = pygame.time.Clock()
 
-
 # define player movement variables
 moving_left = False
 moving_right = False
 moving_up = False
 moving_down = False
 
-player_image = pygame.image.load("assets/images/characters/elf/idle/0.png").convert_alpha()
+# define font
+font = pygame.font.Font("assets/fonts/AtariClassic.ttf", size=20)
 
 
 # helper function to scale image
@@ -38,12 +38,11 @@ mob_animations: list = []
 mob_types = ["elf", "imp", "skeleton", "goblin", "muddy", "tiny_zombie", "big_demon"]
 
 animations_types = ["idle", "run"]
-
-
-# load images
 for mob in mob_types:
+    # load images
     animation_list = []
     for animation in animations_types:
+        #  reset tempory list of images
         tempp_list = []
         for i in range(4):
             img = pygame.image.load(f"assets/images/characters/{mob}/{animation}/{i}.png").convert_alpha()
@@ -52,8 +51,22 @@ for mob in mob_types:
         animation_list.append(tempp_list)
     mob_animations.append(animation_list)
 
+#  damage text class
+class DamageText(pygame.sprite.Sprite):
+    def __init__(self, x, y, damage, color):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = font.render(damage, True, color)
+        self.rect = self.image.get_rect()
+        self.rect.center = (x, y)
+        self.counter = 0
 
-player_image = scale_img(player_image, constants.SCALE)
+    def update(self):
+        #  move damage text up
+        self.rect.y -= 1
+        #  delete the counter after a few time
+        self.counter += 1
+        if self.counter > 30:  # noqa: PLR2004
+            self.kill()
 
 
 # create player
@@ -70,13 +83,14 @@ enemy_list = []
 enemy_list.append(enemy)
 
 # create sprite groups
+damage_text_group = pygame.sprite.Group()
 arrow_group = pygame.sprite.Group()
 
 
 # game loop
 run = True
 while run:
-    # create frame rate
+    # control frame rate
     clock.tick(constants.FPS)
     screen.fill(constants.BG)
 
@@ -103,7 +117,11 @@ while run:
     if arrow:
         arrow_group.add(arrow)
     for arrow in arrow_group:
-        arrow.update(enemy_list)
+        damage, damage_pos = arrow.update(enemy_list)
+        if damage:
+            damage_text = DamageText(damage_pos.centerx, damage_pos.y, str(damage), (constants.RED))
+            damage_text_group.add(damage_text)
+    damage_text_group.update()
 
     # draw player on screens
     for enemy in enemy_list:
@@ -112,7 +130,7 @@ while run:
     bow.draw(screen)
     for arrow in arrow_group:
         arrow.draw(screen)
-    print(f"enemy.health: {enemy.health}")
+    damage_text_group.draw(screen)
 
     # event handler
     for event in pygame.event.get():
