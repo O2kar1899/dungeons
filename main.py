@@ -33,11 +33,9 @@ heart_empty = scale_img(pygame.image.load("assets/images/items/heart_empty.png")
 heart_half = scale_img(pygame.image.load("assets/images/items/heart_half.png").convert_alpha(), constants.ITEM_SCALE)
 heart_full = scale_img(pygame.image.load("assets/images/items/heart_full.png").convert_alpha(), constants.ITEM_SCALE)
 
-
 # load weapon images
 bow_image = scale_img(pygame.image.load("assets/images/weapons/bow.png").convert_alpha(), constants.WEAPON_SCALE)
 arrow_image = scale_img(pygame.image.load("assets/images/weapons/arrow.png").convert_alpha(), constants.WEAPON_SCALE)
-
 
 # load character images
 mob_animations: list = []
@@ -110,7 +108,7 @@ damage_text_group = pygame.sprite.Group()
 arrow_group = pygame.sprite.Group()
 
 
-# game loop
+# game loop ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 run = True
 while run:
     # control frame rate
@@ -142,7 +140,7 @@ while run:
     for arrow in arrow_group:
         damage, damage_pos = arrow.update(enemy_list)
         if damage:
-            damage_text = DamageText(damage_pos.centerx, damage_pos.y, str(damage), (constants.RED))
+            damage_text = DamageText(damage_pos.centerx, damage_pos.y, str(damage), "red")
             damage_text_group.add(damage_text)
     damage_text_group.update()
 

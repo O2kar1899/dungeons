@@ -1,4 +1,6 @@
 import pygame
+
+
 class item(pygame.sprite.Sprite):
     def __init__(self, x, y, item_type, animation_list):
         pygame.sprite.Sprite.__init__(self)
