@@ -2,6 +2,7 @@
 FPS = 60  # frames per second
 SCREEN_WIDHT = 800
 SCREEN_HEIGHT = 600
+PANEL = (50, 50, 50)  # background for player live-hearts
 
 # images
 SCALE = 3  # player
@@ -11,6 +12,7 @@ ANIMATION_COOLDOWN = 70
 OFFSET = 12  # to bring player and rectangle together
 
 # Colors
+WHITE = (255, 255, 255)
 RED = (255, 0, 0)
 BG = (20, 20, 20)  # Background
 

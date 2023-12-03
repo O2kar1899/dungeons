@@ -60,10 +60,18 @@ for mob in mob_types:
 
 # function for display game info
 def draw_info():
+    pygame.draw.rect(screen, constants.PANEL, (0, 0, constants.SCREEN_WIDHT, 50))
+    pygame.draw.line(screen, "white", (0, 50), (constants.SCREEN_WIDHT, 50), 1)
     # draw lives
+    half_heart_draw = False
     for i in range(5):
         if player.health >= ((i + 1) * 20):
             screen.blit(heart_full, (10 + i * 50, 0))
+        elif (player.health % 20 > 0) and not half_heart_draw:
+            screen.blit(heart_half, (10 + i * 50, 0))
+            half_heart_draw = True
+        else:
+            screen.blit(heart_empty, (10 + i * 50, 0))
 
 
 #  damage text class
